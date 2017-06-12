@@ -1,6 +1,0 @@
-# Creates the JDBC connection pool
-create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.DataSource --property user=root:password=password:serverName=localhost:portNumber=3306:databaseName=test mariadb-connection-pool --user admin --passwordFile /opt/pwdfile
-
-# Creates the JDBC resources
-create-jdbc-resource --connectionpoolid mariadb-connection-pool jdbc/soaktest__pm --user admin --passwordFile /opt/pwdfile
-create-jdbc-resource --connectionpoolid mariadb-connection-pool jdbc/soaktest__nontx --user admin --passwordFile /opt/pwdfile
