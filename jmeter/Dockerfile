@@ -16,7 +16,4 @@ COPY SoakTests.jmx Config/SoakTests.jmx
 RUN apt-get update
 RUN apt-get install -y git
 
-RUN git clone git://github.com/vishnubob/wait-for-it
-
-ENTRYPOINT wait-for-it/wait-for-it.sh $p_server:$p_port -t 0 -- echo "Payara instance detected" && \
-           bin/jmeter -n -t Config/SoakTests.jmx -l Data/results.jtl
+ENTRYPOINT bin/jmeter -n -t Config/SoakTests.jmx -l Data/results.jtl

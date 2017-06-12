@@ -1,17 +1,37 @@
 version: '3'
 services:
-        soak-test-payara:
-                build: payara/
+        payara:
+                image: mattgill98/soak-test-payara
+                depends_on:
+                        - mariadb
                 ports:
                         - 4848:4848
                         - 8080:8080
-                links:
-                        - soak-test-mariadb:mariadb
-        soak-test-mariadb:
-                build: mariadb/
+                deploy:
+                        mode: global
+                        restart_policy:
+                                condition: on-failure
+                                delay: 10s
+                                window: 10s
+        mariadb:
+                image: mattgill98/soak-test-mariadb
                 ports:
                         - 3306:3306
-        soak-test-jmeter:
-                build: jmeter/
-                links:
-                        - soak-test-payara:payara
+                deploy:
+                        mode: global
+                        update_config:
+                                delay: 10s
+                        restart_policy:
+                                condition: on-failure
+                                delay: 10s
+                                window: 10s
+        jmeter:
+                image: mattgill98/soak-test-jmeter
+                depends_on:
+                        - payara 
+                deploy:
+                        mode: global
+                        restart_policy:
+                                condition: on-failure
+                                delay: 10s
+                                window: 10s
