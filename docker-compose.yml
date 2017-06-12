@@ -11,3 +11,7 @@ services:
                 build: mariadb/
                 ports:
                         - 3306:3306
+        soak-test-jmeter:
+                build: jmeter/
+                links:
+                        - soak-test-payara:payara

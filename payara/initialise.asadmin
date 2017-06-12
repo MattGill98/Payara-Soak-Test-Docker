@@ -3,3 +3,4 @@ create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.
 
 # Creates the JDBC resource
 create-jdbc-resource --connectionpoolid mariadb-connection-pool jdbc/soaktest 
+
