@@ -10,7 +10,7 @@ RUN  ${PAYARA_PATH}/bin/asadmin start-domain ${PAYARA_DOMAIN} && \
      ${PAYARA_PATH}/bin/asadmin --user admin --passwordFile /opt/pwdfile multimode --file ${PAYARA_PATH}/user-commands.asadmin && \
      ${PAYARA_PATH}/bin/asadmin stop-domain ${PAYARA_DOMAIN}
 
+RUN git clone git://github.com/vishnubob/wait-for-it
 
-ENTRYPOINT git clone git://github.com/vishnubob/wait-for-it && \
-           wait-for-it/wait-for-it.sh mariadb:3306 -t 0 -- echo "MariaDB instance detected" && \
+ENTRYPOINT wait-for-it/wait-for-it.sh mariadb:3306 -t 0 -- echo "MariaDB instance detected" && \
            ${PAYARA_PATH}/generate_deploy_commands.sh && ${PAYARA_PATH}/bin/asadmin start-domain -v --postbootcommandfile ${DEPLOY_COMMANDS} ${PAYARA_DOMAIN}
