@@ -1,6 +1,6 @@
 version: '3'
 services:
-         mariadb:
+        mariadb:
                 image: mattgill98/soak-test-mariadb
                 ports:
                         - 3306:3306
@@ -25,13 +25,13 @@ services:
                                 condition: any
                                 delay: 10s
                                 window: 10s
-       jmeter:
-                image: mattgill98/soak-test-jmeter
-                depends_on:
-                        - payara 
-                deploy:
-                        mode: global
-                        restart_policy:
-                                condition: any
-                                delay: 10s
-                                window: 10s
+        jmeter:
+               image: mattgill98/soak-test-jmeter
+               depends_on:
+                       - payara 
+               deploy:
+                       mode: global
+                       restart_policy:
+                               condition: any
+                               delay: 10s
+                               window: 10s

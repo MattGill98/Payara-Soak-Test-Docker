@@ -3,7 +3,7 @@ FROM hauptmedia/jmeter
 ENV p_personfile=/Data/persons.csv
 ENV p_server=payara
 ENV p_port=8080
-ENV p_site=/Payara-Soak-Tests-1.0-SNAPSHOT
+ENV p_site=/Payara-Soak-Tests-1.0-SNAPSHOT/
 ENV p_users=30
 ENV p_loops=10
 ENV p_ramp_up_secs=15
@@ -13,4 +13,13 @@ COPY persons.csv /Data/persons.csv
 
 COPY SoakTests.jmx /Config/SoakTests.jmx
 
-ENTRYPOINT bin/jmeter -n -t /Config/SoakTests.jmx -l /Data/results.jtl
+ENTRYPOINT bin/jmeter \
+           -Jp_personfile=$p_personfile \
+           -Jp_server=$p_server \
+           -Jp_port=$p_port \
+           -Jp_site=$p_site \
+           -Jp_users=$p_users \
+           -Jp_loops=$p_loops \
+           -Jp_ramp_up_secs=$p_ramp_up_secs \
+           -Jp_response_timeout=$p_response_timeout \
+           -n -t /Config/SoakTests.jmx -l /Data/results.jtl
