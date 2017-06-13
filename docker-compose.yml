@@ -6,32 +6,28 @@ services:
                         - 3306:3306
                 deploy:
                         mode: global
-                        update_config:
-                                delay: 10s
                         restart_policy:
-                                condition: any
-                                delay: 10s
-                                window: 10s
+                                condition: on-failure 
+
         payara:
                 image: mattgill98/soak-test-payara
-                depends_on:
-                        - mariadb
                 ports:
                         - 4848:4848
                         - 8080:8080
+                healthcheck:
+                        test: curl -f localhost:8080/Payara-Soak-Tests-1.0-SNAPSHOT/
+                        interval: 10s
+                        timeout: 5s
+                        retries: 2
                 deploy:
                         mode: global
                         restart_policy:
                                 condition: any
-                                delay: 10s
-                                window: 10s
+
         jmeter:
-               image: mattgill98/soak-test-jmeter
-               depends_on:
-                       - payara 
-               deploy:
-                       mode: global
-                       restart_policy:
-                               condition: any
-                               delay: 10s
-                               window: 10s
+                image: mattgill98/soak-test-jmeter
+                deploy:
+                        mode: global
+                        restart_policy:
+                                condition: any
+                                delay: 30s
