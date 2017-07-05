@@ -1,0 +1,31 @@
+version: '3'
+services:
+        mariadb:
+                image: mattgill98/soak-test-mariadb
+                deploy:
+                        mode: global
+                        restart_policy:
+                                condition: on-failure
+
+        payara:
+                image: mattgill98/soak-test-payara
+                ports:
+                        - 4848:4848
+                        - 8080:8080
+                deploy:
+                        mode: global
+                        restart_policy:
+                                condition: any
+
+        jmeter:
+                image: mattgill98/soak-test-jmeter
+                environment:
+                        - p_users=30
+                        - p_loops=3
+                        - p_ramp_up_secs=15
+                        - p_response_timeout=8000
+                deploy:
+                        mode: global
+                        restart_policy:
+                                condition: any
+                                delay: 20s
