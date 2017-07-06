@@ -1,7 +1,6 @@
 package fish.payara.test.payara.soak.jpa;
 
 import javax.annotation.sql.DataSourceDefinition;
-import javax.ejb.Stateless;
 
 /**
  * @author Matt Gill
@@ -13,7 +12,6 @@ import javax.ejb.Stateless;
         user = "root",
         password = "password"
 )
-@Stateless
 public class DataSourceConfig {
 
 }

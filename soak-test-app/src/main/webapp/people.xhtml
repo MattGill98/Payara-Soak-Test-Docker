@@ -8,11 +8,8 @@
         <title>Person List</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:commandButton action="#{loginBean.logout}" value="Logout" />
-            <h:outputText value="Hello '#{loginBean.username}'!" /> <br />
-        </h:form>
-        
+        <h:button outcome="home" value="Logout" />
+
         <h:form>
             <h:outputLabel value="Title: " />
             <h:inputText label="Title" id="titleField" value="#{personBean.person.title}" /> <br />
@@ -29,6 +26,10 @@
 
             <h:commandButton value="Delete All" action="#{personBean.deleteAll}">
                 <f:ajax render="persons outputMessage" />
+            </h:commandButton>
+
+            <h:commandButton value="Refresh">
+                <f:ajax render="persons" />
             </h:commandButton> <br />
 
             <h:outputText id="outputMessage" value="#{personBean.outputMessage}" />
