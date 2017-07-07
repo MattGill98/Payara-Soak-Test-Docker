@@ -1,68 +1,70 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <h:outputStylesheet library="css" name="table-style.css" />
         <title>Person List</title>
     </h:head>
     <h:body>
-        <h:button outcome="home" value="Logout" />
+        <f:view transient="true">
+            <h:button outcome="home" value="Logout" />
 
-        <h:form>
-            <h:outputLabel value="Title: " />
-            <h:inputText label="Title" id="titleField" value="#{personBean.person.title}" /> <br />
+            <h:form>
+                <h:outputLabel value="Title: " />
+                <h:inputText label="Title" id="titleField" value="#{personBean.person.title}" /> <br />
 
-            <h:outputLabel value="First Name: " />
-            <h:inputText label="Firstname" id="FirstnameField" value="#{personBean.person.firstname}" /> <br />
+                <h:outputLabel value="First Name: " />
+                <h:inputText label="Firstname" id="FirstnameField" value="#{personBean.person.firstname}" /> <br />
 
-            <h:outputLabel value="Surname: " />
-            <h:inputText label="Surname" id="surnameField" value="#{personBean.person.surname}" /> <br />
+                <h:outputLabel value="Surname: " />
+                <h:inputText label="Surname" id="surnameField" value="#{personBean.person.surname}" /> <br />
 
-            <h:commandButton value="Add Person" action="#{personBean.create}">
-                <f:ajax execute="@form" render="persons outputMessage" />
-            </h:commandButton>
+                <h:commandButton value="Add Person" action="#{personBean.create}">
+                    <f:ajax execute="@form" render="persons outputMessage" />
+                </h:commandButton>
 
-            <h:commandButton value="Delete All" action="#{personBean.deleteAll}">
-                <f:ajax render="persons outputMessage" />
-            </h:commandButton>
+                <h:commandButton value="Delete All" action="#{personBean.deleteAll}">
+                    <f:ajax render="persons outputMessage" />
+                </h:commandButton>
 
-            <h:commandButton value="Refresh">
-                <f:ajax render="persons" />
-            </h:commandButton> <br />
+                <h:commandButton value="Refresh">
+                    <f:ajax render="persons" />
+                </h:commandButton> <br />
 
-            <h:outputText id="outputMessage" value="#{personBean.outputMessage}" />
-        </h:form>
+                <h:outputText id="outputMessage" value="#{personBean.outputMessage}" />
+            </h:form>
 
-        <h:panelGroup id="persons">
-            <h:dataTable value="#{personManager.allPeople}" var="person"
-                         styleClass="order-table"
-                         headerClass="order-table-header"
-                         rowClasses="order-table-odd-row, order-table-even-row">
+            <h:panelGroup id="persons">
+                <h:dataTable value="#{personManager.allPeople}" var="person"
+                             styleClass="order-table"
+                             headerClass="order-table-header"
+                             rowClasses="order-table-odd-row, order-table-even-row">
 
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                        #{person.id}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{person.id}
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">Title</f:facet>
-                        #{person.title}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">Title</f:facet>
+                            #{person.title}
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">First Name</f:facet>
-                        #{person.firstname}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">First Name</f:facet>
+                            #{person.firstname}
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">Surname</f:facet>
-                        #{person.surname}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">Surname</f:facet>
+                            #{person.surname}
+                    </h:column>
 
-            </h:dataTable>
-        </h:panelGroup>
+                </h:dataTable>
+            </h:panelGroup>
+        </f:view>
     </h:body>
 </html>
 

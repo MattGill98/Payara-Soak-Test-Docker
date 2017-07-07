@@ -7,9 +7,9 @@ WORKDIR apache-jmeter-3.2
 ENV p_server=payara
 ENV p_port=8080
 ENV p_site=/soak-test
-ENV p_users=30
+ENV p_users=300
 ENV p_loops=3
-ENV p_ramp_up_secs=15
+ENV p_ramp_up_secs=1
 ENV p_response_timeout=8000
 
 COPY persons.csv . 
