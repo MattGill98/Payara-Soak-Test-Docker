@@ -8,9 +8,14 @@ import javax.annotation.sql.DataSourceDefinition;
 @DataSourceDefinition(
         name = "java:app/SoakTestApp/SoakTestDS",
         className = "com.mysql.jdbc.jdbc2.optional.MysqlDataSource",
-        url = "jdbc:mysql://mariadb:3306/test",
+        serverName = "mariadb",
+        databaseName = "test",
+        portNumber = 3306,
         user = "root",
-        password = "password"
+        password = "password",
+        minPoolSize = 5,
+        maxPoolSize = 15,
+        initialPoolSize = 10
 )
 public class DataSourceConfig {
 
