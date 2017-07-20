@@ -24,4 +24,4 @@ ENTRYPOINT sh bin/jmeter \
         -Jp_loops=$p_loops \
         -Jp_ramp_up_secs=$p_ramp_up_secs \
         -Jp_response_timeout=$p_response_timeout \
-	-n -t SoakTests.jmx -l rslts.jtl
+	-n -t SoakTests.jmx -l rslts.jtl >/dev/null 2>&1
